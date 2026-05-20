@@ -69,16 +69,13 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Setup SSH key
-        env:
-          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+      - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          printf '%b' "$EC2_SSH_KEY" > ~/.ssh/deploy_key
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          echo "Line count: $(wc -l < ~/.ssh/deploy_key)"
-          echo "First line: $(head -1 ~/.ssh/deploy_key)"
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        
 
       - name: Deploy to EC2 via rsync
         run: |
