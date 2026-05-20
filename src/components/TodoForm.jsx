@@ -13,6 +13,7 @@ function TodoForm({ onAdd }) {
 
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
+      <div>RZ</div>
       <input
         type="text"
         value={text}
