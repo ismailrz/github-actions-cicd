@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import TodoItem from './TodoItem'
 
 function TodoList({ todos, onToggle, onDelete }) {
@@ -12,6 +13,18 @@ function TodoList({ todos, onToggle, onDelete }) {
       ))}
     </ul>
   )
+}
+
+TodoList.propTypes = {
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
+  onToggle: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 }
 
 export default TodoList

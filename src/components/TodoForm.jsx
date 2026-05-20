@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 function TodoForm({ onAdd }) {
   const [text, setText] = useState('')
@@ -24,6 +25,10 @@ function TodoForm({ onAdd }) {
       <button type="submit">Add</button>
     </form>
   )
+}
+
+TodoForm.propTypes = {
+  onAdd: PropTypes.func.isRequired,
 }
 
 export default TodoForm
