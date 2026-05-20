@@ -83,7 +83,7 @@ jobs:
 
       - name: Deploy to EC2 via rsync
         run: |
-          rsync -avz --delete \
+          rsync -avz --delete --mkpath \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
             dist/ \
             ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:${{ secrets.EC2_TARGET_DIR }}
